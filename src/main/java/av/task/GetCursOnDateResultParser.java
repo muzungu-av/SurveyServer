@@ -11,24 +11,6 @@ import java.util.List;
 
 public class GetCursOnDateResultParser {
 
-    public static class Valute {
-        public String name;
-        public String chCode;
-        public int code;
-        public BigDecimal nom;
-        public BigDecimal curs;
-
-        public Valute() {
-        }
-
-        public Valute(String vname, String vchcode, int vcode, BigDecimal vnom, BigDecimal vcurs) {
-            this.name = vname;
-            this.chCode = vchcode;
-            this.code = vcode;
-            this.nom = vnom;
-            this.curs = vcurs;
-        }
-    }
 
     public static Valute getValuteByValuteCh(String valuteCh, GetCursOnDateXMLResult result) throws Exception {
         Valute answer = new Valute();
@@ -53,19 +35,19 @@ public class GetCursOnDateResultParser {
                     Node currentValue = currentNode.getFirstChild();
                     String value = currentValue.getNodeValue();
                     if (name.equalsIgnoreCase("Vname")) {
-                        answer.name = value;
+                        answer.setName(value);
                     }
                     if (name.equalsIgnoreCase("Vnom")) {
-                        answer.nom = new BigDecimal(value);
+                        answer.setNom(new BigDecimal(value));
                     }
                     if (name.equalsIgnoreCase("Vcurs")) {
-                        answer.curs = new BigDecimal(value);
+                        answer.setCurs(new BigDecimal(value));
                     }
                     if (name.equalsIgnoreCase("Vcode")) {
-                        answer.code = Integer.parseInt(value);
+                        answer.setCode(Integer.parseInt(value));
                     }
                     if (name.equalsIgnoreCase("VchCode")) {
-                        answer.chCode = value;
+                        answer.setChCode(value);
                     }
                 }
             }
@@ -96,19 +78,19 @@ public class GetCursOnDateResultParser {
                     Node currentValue = currentNode.getFirstChild();
                     String value = currentValue.getNodeValue();
                     if (name.equalsIgnoreCase("Vname")) {
-                        answer.name = value;
+                        answer.setName(value);
                     }
                     if (name.equalsIgnoreCase("Vnom")) {
-                        answer.nom = new BigDecimal(value);
+                        answer.setNom(new BigDecimal(value));
                     }
                     if (name.equalsIgnoreCase("Vcurs")) {
-                        answer.curs = new BigDecimal(value);
+                        answer.setCurs(new BigDecimal(value));
                     }
                     if (name.equalsIgnoreCase("Vcode")) {
-                        answer.code = Integer.parseInt(value);
+                        answer.setCode(Integer.parseInt(value));
                     }
                     if (name.equalsIgnoreCase("VchCode")) {
-                        answer.chCode = value;
+                        answer.setChCode(value);
                     }
                 }
             }

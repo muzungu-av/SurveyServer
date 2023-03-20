@@ -22,14 +22,15 @@ public class Application {
 
         onDate = port.getLatestDateTime();
         GetCursOnDateXMLResponse.GetCursOnDateXMLResult result = port.getCursOnDateXML(onDate);
-        GetCursOnDateResultParser.Valute list = null;
+        Valute valute = null;
 
         try {
-            list = GetCursOnDateResultParser.getValuteByValuteCh("USD", result);
+            valute = GetCursOnDateResultParser.getValuteByValuteCh("AUD", result);
             /*  list = GetCursOnDateResultParser.getValuteByValuteCode("840", result); */
+            System.out.println(valute.toString());
         } catch (Exception e) {
             //todo log
         }
-        System.out.println(list.curs);
+
     }
 }
