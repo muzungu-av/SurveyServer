@@ -1,4 +1,4 @@
-package av.task;
+package av.task.common;
 
 import java.math.BigDecimal;
 import java.util.Objects;

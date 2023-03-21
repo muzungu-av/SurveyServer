@@ -1,9 +1,12 @@
 package av.task;
 
+import av.task.common.GetCursOnDateResultParser;
+import av.task.common.Valute;
 import ru.cbr.web.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,7 +15,7 @@ public class Application {
 
         XMLGregorianCalendar onDate = null;
         try {
-            onDate = av.task.XMLGregorianCalendar.getXMLGregorianCalendarNow();
+            onDate = av.task.common.XMLGregorianCalendar.getXMLGregorianCalendarNow();
         } catch (DatatypeConfigurationException e) {
             //todo log
         }
@@ -21,16 +24,14 @@ public class Application {
         GetCursOnDateResponse.GetCursOnDateResult curs = port.getCursOnDate(onDate);
 
         onDate = port.getLatestDateTime();
-        GetCursOnDateXMLResponse.GetCursOnDateXMLResult result = port.getCursOnDateXML(onDate);
-        Valute valute = null;
+        GetCursOnDateXMLResponse.GetCursOnDateXMLResult xmlResult = port.getCursOnDateXML(onDate);
 
         try {
-            valute = GetCursOnDateResultParser.getValuteByValuteCh("AUD", result);
-            /*  list = GetCursOnDateResultParser.getValuteByValuteCode("840", result); */
-            System.out.println(valute.toString());
+            List<Valute> valute = GetCursOnDateResultParser.getValuteByValuteCh(List.of("USD", "EUR"), xmlResult);
+//            Valute valute = GetCursOnDateResultParser.getValuteByValuteCh("USD", xmlResult);
+            System.out.println(valute);
         } catch (Exception e) {
-            //todo log
+            System.out.println(e.getMessage());
         }
-
     }
 }
